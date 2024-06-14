@@ -1,0 +1,160 @@
+---
+title: "Magnetite-based mechanism underlies sea turtle map sense"
+output: html_document
+date: "2024-06-11"
+---
+
+################################################################################
+#Load Libraries
+```{r}
+library(RColorBrewer)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+library(rstatix)
+library(ggsignif)
+library(outliers)
+library(maps)
+```
+
+################################################################################
+#Color Palette
+```{r}
+# Hexadecimal color specification 
+display.brewer.pal(5, "GnBu")
+display.brewer.pal(5, "BuPu")
+
+brewer.pal(n = 5, name = "GnBu")
+brewer.pal(n = 5, name = "BuPu")
+
+#rewarded   sham pulse  pulse   post pulse
+#"#8C96C6" "#8856A7" "#7BCCC4" "#43A2CA"
+```
+
+################################################################################
+#Load Data
+```{r}
+pulsemag_data <- read.csv("2024_06_13 Turtle Pulse Mag Analysis.csv", sep = ",", header = TRUE)
+View(pulsemag_data)
+```
+##Arrange Data by Treatment and Turtle_ID
+```{r}
+pulsemag_data <- pulsemag_data %>% arrange(Treatment)
+pulsemag_data <- pulsemag_data %>% arrange(desc(Turtle_ID))
+```
+
+################################################################################
+#Treatment Plotting and Statistical Analysis
+##Figure 2A
+```{r}
+pulsemagbarplot <- ggplot(pulsemag_data,aes(x=Treatment,y=Avg_Time,fill=Treatment)) + 
+  stat_summary(fun="mean",geom="bar") + 
+  stat_summary(fun=mean,fun.min = function(x) mean(x)-sd(x)/sqrt(length(x)),fun.max = function(x) mean(x) + 
+  sd(x)/sqrt(length(x)), geom="errorbar",color="black", width=0.6) + 
+  geom_point(position=position_jitter(width=0.2),size=3) + theme_classic() + 
+  theme(axis.title.x = element_text(size=14), axis.title.y = element_text(size=14), 
+        axis.text.x = element_text(size = 12, color = "black"), 
+        axis.text.y = element_text(size = 12, color = "black")) +
+  labs (x="Treatment", y="Time Spent Food Seeking (s)") + 
+  scale_fill_manual(values=c("#43A2CA", "#7BCCC4", "#8C96C6", "#8856A7")) + theme(legend.position = "none") +
+  scale_x_discrete(limits=c("Rewarded", "Sham Pulse", "Pulse", "Post Pulse")) + scale_y_continuous(expand = c(0,0),limits = c(0,93)) +
+  geom_segment(aes(x="Rewarded",xend="Post Pulse",y=89.5,yend=89.5)) + 
+        annotate("text", x = c(2.5),y = c(90),label = c("*"), size=8) +
+  geom_segment(aes(x="Rewarded",xend="Pulse",y=85.5,yend=85.5)) + 
+        annotate("text",x = c(2),y = c(86),label = c("*"), size=8) +
+  geom_segment(aes(x="Sham Pulse",xend="Post Pulse",y=80.5,yend=80.5)) +
+        annotate("text",x = c(3), y = c(81),label = c("*"), size=8) +
+  geom_segment(aes(x="Sham Pulse",xend="Pulse",y=75.5,yend=75.5))+
+        annotate("text", x = c(2.5), y = c(76),label = c("*"), size=8)
+
+pulsemagbarplot
+```
+##Statistal Testing
+```{r}
+wilcox_test(Avg_Time ~ Treatment, data = pulsemag_data, paired= TRUE, p.adjust.method = "BH") 
+compare_means(Avg_Time ~ Treatment, data = pulsemag_data, paired= TRUE, p.adjust.method = "BH") #comparing with second stats to double check, same p-values
+```
+
+##Outlier Testing
+```{r}
+#if p-value < 0.05, then value is an outlier
+rewarded <- pulsemag_data %>% filter(Treatment== "Rewarded")
+dixon.test(rewarded$Avg_Time)
+#p-value = 0.39
+
+sham_pulse <- pulsemag_data %>% filter(Treatment== "Sham Pulse")
+dixon.test(sham_pulse$Avg_Time)
+#p-value = 0.624
+
+pulse <- pulsemag_data %>% filter(Treatment== "Pulse")
+dixon.test(pulse$Avg_Time)
+#p-value < 2.2e-16
+#alternative hypothesis: highest value 72.8 is an outlier
+
+post_pulse <- pulsemag_data %>% filter(Treatment== "Post Pulse")
+dixon.test(post_pulse$Avg_Time)
+#p-value = 0.08157
+```
+
+################################################################################
+#Parallel vs Antiparallel Pulse Treatment Plotting and Statistical Analysis
+##Figure 2B
+```{r}
+pulsetreat_boxplot <- ggplot(pulsemag_data, aes(x= Pulse_Treatment, y = Avg_Time, fill=Pulse_Treatment)) +
+  geom_boxplot(outlier.size = 3) + theme_classic() + 
+   theme(axis.title.x = element_text(size=14), axis.title.y = element_text(size=14), 
+        axis.text.x = element_text(size = 12, color = "black"), 
+        axis.text.y = element_text(size = 12, color = "black")) +
+  labs (x="Pulse Treatment", y=" ") + 
+  scale_fill_manual(values=c("#7BCCC4", "#7BCCC4")) +
+  scale_x_discrete(limits=c("Parallel", "Antiparallel")) + theme(legend.position = "none") +
+  scale_y_continuous(expand = c(0,0),limits = c(0,93))
+
+pulsetreat_boxplot
+```
+##Statistical Testing
+```{r}
+pulsetreatment <- pulsemag_data %>% filter(Treatment == "Pulse")
+wilcox_test(Avg_Time ~ Pulse_Treatment, data = pulsetreatment) 
+compare_means(Avg_Time ~ Pulse_Treatment, data = pulsetreatment) #comparing with second stats to double check, same p-value
+#p-value = 0.51
+```
+
+################################################################################
+#Combining Fig 2A-B
+##Figure 2
+```{r}
+ggarrange(pulsemagbarplot, pulsetreat_boxplot,
+                    labels = c("A", "B"),
+                    ncol = 2, nrow = 1)
+
+ggsave("Fig2.pdf", width=10, height=6, dpi=300)
+```
+
+################################################################################
+#Map Plot
+##Figure 1A
+```{r}
+map_points <- read.table("Map Plot.csv", sep = ",", header = TRUE)
+
+world <- map_data("world")
+map <- ggplot() + geom_polygon(data=world, aes(x=long, y=lat, group=group),color="black", fill="lightgrey" ) + 
+  coord_fixed(xlim=c(-95.5, -65.5), ylim = c(15, 45), ratio = 1) + 
+  theme_classic() + theme(legend.position = "none") +
+        theme(axis.title.x = element_blank(),axis.text.x = element_blank(), axis.ticks.x = element_blank()) + 
+        theme(axis.title.y = element_blank(),axis.text.y = element_blank(),axis.ticks.y = element_blank()) + 
+        theme(panel.background = element_rect(fill = "lightblue")) + 
+  geom_point(data=map_points, aes(x=Longitude, y=Latitude, fill = Location), pch=21, size=5,stroke= 1.2, alpha=I(1)) +
+  scale_fill_manual(values=c("#8C96C6","#8C96C6", "white")) + 
+      annotate("text", x = c(-71.8), y = c(23.6),label = c("TC"), size=4) + 
+      annotate("text", x = c(-72.3), y = c(16.9), label = c("HT"), size=4) + 
+      annotate("text", x = c(-83), y = c(35.9), label = c("Test Site"), size=4)
+map
+ggsave("Fig1A.pdf", width=4, height=4, dpi=300)
+```
+
+
+

@@ -1,0 +1,49 @@
+Date,Turtle_ID,Treatment,Pulse_Treatment,Analysis_1,Analysis_2,Avg_Time
+4/5/2022,L223,Pulse,Antiparallel,16.02,12.02,14.02
+4/5/2022,L229,Pulse,Antiparallel,6.76,6.13,6.45
+4/5/2022,L222,Pulse,Antiparallel,6.75,6.83,6.79
+4/5/2022,L219,Pulse,Antiparallel,20.01,8.25,14.13
+4/4/22,L220,Pulse,Antiparallel,6.97,7.57,7.27
+4/4/22,L226,Pulse,Antiparallel,18.00,20.26,19.13
+4/4/22,L228,Pulse,Antiparallel,5.75,4.76,5.25
+4/4/22,L231,Pulse,Antiparallel,1.77,1.51,1.64
+3/28/22,L227,No Pulse,No Pulse,33.19,36.06,34.63
+3/28/22,L217,No Pulse,No Pulse,32.90,25.90,29.40
+3/28/22,L224,No Pulse,No Pulse,11.03,17.29,14.16
+3/28/22,L225,No Pulse,No Pulse,44.23,53.85,49.04
+3/29/22,L232,No Pulse,No Pulse,10.37,14.50,12.44
+3/29/22,L218,No Pulse,No Pulse,8.99,13.45,11.22
+3/29/22,L221,No Pulse,No Pulse,12.23,19.09,15.66
+3/29/22,L230,No Pulse,No Pulse,19.81,19.97,19.89
+3/30/22,L223,No Pulse,No Pulse,19.52,18.71,19.11
+3/30/22,L229,No Pulse,No Pulse,10.28,13.67,11.97
+3/30/22,L222,No Pulse,No Pulse,26.76,18.26,22.51
+3/30/22,L219,No Pulse,No Pulse,25.50,18.63,22.07
+3/31/22,L220,No Pulse,No Pulse,38.40,45.22,41.81
+3/31/22,L226,No Pulse,No Pulse,18.34,28.40,23.37
+3/31/22,L228,No Pulse,No Pulse,14.75,12.13,13.44
+3/31/22,L231,No Pulse,No Pulse,4.90,4.57,4.74
+4/5/2022,L227,Pulse,Parallel,2.83,2.23,2.53
+4/5/2022,L217,Pulse,Parallel,19.47,25.52,22.50
+4/5/2022,L224,Pulse,Parallel,7.67,5.56,6.61
+4/5/2022,L225,Pulse,Parallel,63.47,82.22,72.85
+4/4/22,L232,Pulse,Parallel,12.52,12.00,12.26
+4/4/22,L218,Pulse,Parallel,7.51,6.98,7.24
+4/4/22,L221,Pulse,Parallel,7.51,8.20,7.85
+4/4/22,L230,Pulse,Parallel,9.02,8.26,8.64
+3/28/22,L223,Sham Pulse,Sham Pulse,17.98,24.88,21.43
+3/28/22,L229,Sham Pulse,Sham Pulse,9.75,7.52,8.64
+3/28/22,L222,Sham Pulse,Sham Pulse,25.42,36.51,30.97
+3/28/22,L219,Sham Pulse,Sham Pulse,19.74,29.23,24.48
+3/29/22,L220,Sham Pulse,Sham Pulse,20.77,33.74,27.26
+3/29/22,L226,Sham Pulse,Sham Pulse,22.38,22.18,22.28
+3/29/22,L228,Sham Pulse,Sham Pulse,40.79,42.92,41.85
+3/29/22,L231,Sham Pulse,Sham Pulse,18.49,16.18,17.34
+3/30/22,L227,Sham Pulse,Sham Pulse,16.00,23.48,19.74
+3/30/22,L217,Sham Pulse,Sham Pulse,27.27,34.17,30.72
+3/30/22,L224,Sham Pulse,Sham Pulse,2.74,3.99,3.37
+3/30/22,L225,Sham Pulse,Sham Pulse,24.53,40.72,32.63
+3/31/22,L232,Sham Pulse,Sham Pulse,17.90,15.04,16.47
+3/31/22,L218,Sham Pulse,Sham Pulse,12.97,27.73,20.35
+3/31/22,L221,Sham Pulse,Sham Pulse,13.26,13.97,13.61
+3/31/22,L230,Sham Pulse,Sham Pulse,8.73,9.60,9.17

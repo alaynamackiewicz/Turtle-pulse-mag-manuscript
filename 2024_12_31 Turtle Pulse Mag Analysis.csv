@@ -1,0 +1,49 @@
+Turtle_ID,Treatment,Pulse_Treatment,Avg_Time
+L223,Pulse,Antiparallel,14.02
+L229,Pulse,Antiparallel,6.45
+L222,Pulse,Antiparallel,6.79
+L219,Pulse,Antiparallel,14.13
+L220,Pulse,Antiparallel,7.27
+L226,Pulse,Antiparallel,19.13
+L228,Pulse,Antiparallel,5.25
+L231,Pulse,Antiparallel,1.64
+L227,No Pulse,No Pulse,34.63
+L217,No Pulse,No Pulse,29.40
+L224,No Pulse,No Pulse,14.16
+L225,No Pulse,No Pulse,49.04
+L232,No Pulse,No Pulse,12.44
+L218,No Pulse,No Pulse,11.22
+L221,No Pulse,No Pulse,15.66
+L230,No Pulse,No Pulse,19.89
+L223,No Pulse,No Pulse,19.11
+L229,No Pulse,No Pulse,11.97
+L222,No Pulse,No Pulse,22.51
+L219,No Pulse,No Pulse,22.07
+L220,No Pulse,No Pulse,41.81
+L226,No Pulse,No Pulse,23.37
+L228,No Pulse,No Pulse,13.44
+L231,No Pulse,No Pulse,4.74
+L227,Pulse,Parallel,2.53
+L217,Pulse,Parallel,22.50
+L224,Pulse,Parallel,6.61
+L225,Pulse,Parallel,72.85
+L232,Pulse,Parallel,12.26
+L218,Pulse,Parallel,7.24
+L221,Pulse,Parallel,7.85
+L230,Pulse,Parallel,8.64
+L223,Sham Pulse,Sham Pulse,21.43
+L229,Sham Pulse,Sham Pulse,8.64
+L222,Sham Pulse,Sham Pulse,30.97
+L219,Sham Pulse,Sham Pulse,24.48
+L220,Sham Pulse,Sham Pulse,27.26
+L226,Sham Pulse,Sham Pulse,22.28
+L228,Sham Pulse,Sham Pulse,41.85
+L231,Sham Pulse,Sham Pulse,17.34
+L227,Sham Pulse,Sham Pulse,19.74
+L217,Sham Pulse,Sham Pulse,30.72
+L224,Sham Pulse,Sham Pulse,3.37
+L225,Sham Pulse,Sham Pulse,32.63
+L232,Sham Pulse,Sham Pulse,16.47
+L218,Sham Pulse,Sham Pulse,20.35
+L221,Sham Pulse,Sham Pulse,13.61
+L230,Sham Pulse,Sham Pulse,9.17
